@@ -14,3 +14,13 @@ spring:
       ddl-auto: update
   profiles:
     active: cloud
+management:
+  endpoint:
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
