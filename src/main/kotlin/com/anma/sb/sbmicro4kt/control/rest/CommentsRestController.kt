@@ -1,4 +1,4 @@
-package com.anma.sb.sbmicro4kt.rest
+package com.anma.sb.sbmicro4kt.control.rest
 
 import com.anma.sb.sbmicro4kt.models.Comment
 import com.anma.sb.sbmicro4kt.repo.CommentRepo
