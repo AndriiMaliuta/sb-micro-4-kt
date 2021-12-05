@@ -33,3 +33,28 @@ data class Comment(
     @Column(name = "created_at") val createdAt: LocalDateTime,
     @Column(name = "author_id") val authorId: Long
 )
+
+@Entity
+@Table(name = "persons")
+data class Person(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
+    val id: Long = 0,
+    val name: String? = null,
+    @Column(name = "full_name") val fullName: String? = null,
+    val email: String? = null,
+    val gender: String? = null,
+    val status: String? = null,
+    val age: Int,
+    val cars: Int,
+    @Column(name = "country_code")
+    val countryCode: String? = null,
+
+    @Column(name = "has_children") val hasChildren: Boolean,
+    val engaged: Boolean,
+    val createdAt: LocalDateTime,
+
+    @Column(name = "country_id")
+    val countryId: Long = 0
+)
