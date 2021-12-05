@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <h2>Comments</h2>
+<div>
+
+<!--    <div th:each="c : ${comments}">-->
+<!--        <div>-->
+<!--            <p th:text="${c}"></p>-->
+<!--            <p th:text="${cat.age}"></p>-->
+<!--            <p th:text="${cat.color}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id="comm-root"></div>
+</div>
+
+    <script type="text/javascript">
+
+        const commRoot = document.querySelector("#comm-root");
+
+        getComments();
+
+        function getComments() {
+            fetch('/rest/comments').then(r => r.json()).then(res => {
+               let comments = res;
+               comments.forEach(c => {
+                   let commDiv = document.createElement('div');
+                   commDiv.innerHTML = `<div class="comment"><p>${c.body}</p><p>${c.category}</p></div>`;
+                   commRoot.appendChild(commDiv);
+               })
+            });
+        }
+
+    </script>
+
+</body>
+</html>
