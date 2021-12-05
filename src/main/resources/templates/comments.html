@@ -7,6 +7,9 @@
 </head>
 <body>
     <h2>Comments</h2>
+    <div>
+        size: <span th:text="${commentsSize}"></span>
+    </div>
 <div>
 
 <!--    <div th:each="c : ${comments}">-->
@@ -24,15 +27,31 @@
         const commRoot = document.querySelector("#comm-root");
 
         getComments();
+        getPersons();
 
+        function populatePersonForComment(id) {
+            const comment = document.querySelector("#comm");
+            fetch(`/rest/persons/${id}`).then(r => r.json()).then(res => {
+                let personPara = document.createElement('p');
+                personPara.innerHTML = `${res.name}`
+                // comment.appendChild(personPara);
+                console.log(res)
+            });
+        }
         function getComments() {
             fetch('/rest/comments').then(r => r.json()).then(res => {
-               let comments = res;
-               comments.forEach(c => {
+                res.forEach(c => {
                    let commDiv = document.createElement('div');
-                   commDiv.innerHTML = `<div class="comment"><p>${c.body}</p><p>${c.category}</p></div>`;
+                   commDiv.innerHTML = `<div id="comm" class="comment"><p>${c.body}</p><p>${c.category}</p></div>`;
                    commRoot.appendChild(commDiv);
+                   populatePersonForComment(c.authorId)
                })
+            });
+        }
+
+        function getPersons() {
+            fetch('/rest/persons').then(r => r.json()).then(res => {
+                console.log(res)
             });
         }
 

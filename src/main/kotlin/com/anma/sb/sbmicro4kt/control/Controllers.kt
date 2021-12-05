@@ -25,6 +25,7 @@ class CommentsPageController(val commentRepo: CommentRepo) {
         val comments: List<Comment> = commentRepo.findAll()
 
         model.addAttribute("comments", comments)
+        model.addAttribute("commentsSize", comments.size)
 
         return "comments"
     }

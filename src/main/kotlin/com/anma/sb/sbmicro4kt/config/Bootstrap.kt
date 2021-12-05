@@ -33,6 +33,6 @@ class Bootstrap(
         logger.info(" == Loading data")
         val comment = commentRepo.findById(19993)
 //        val commentWeb = commentMapper.convertToWeb(comment.get())
-//        logger.info(commentWeb.toString())
+        logger.info(comment.toString())
     }
 }
